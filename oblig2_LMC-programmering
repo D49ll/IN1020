@@ -1,0 +1,62 @@
+        INP         //input
+        STA n       //n = input
+        LDA v0      //konstanten 0
+        STA sum     //sum = 0
+
+loop    LDA n       //n hentes
+        BRZ psum    //while n != 0
+        sub v1      //n -= 1
+        STA n       //n lagres
+
+        INP         //input
+        ADD sum     //sum += sum
+        STA sum     //sum lagres
+        BRA loop    //gjentar loop
+
+psum    LDA sum     //n = 0, henter sum
+        OUT         //print(sum)
+        
+mod     LDA sum     //sum hentes
+        BRZ pos     //if sum != 0, printer "par"
+        SUB v2      //sum -= 2
+        STA sum     //sum lagres
+        BRP mod     //while sum >= 0, gjentas mod
+        BRA neg     //if sum < 0, printer "odd"
+
+pos     LDA ptxt    //henter "DAT X"
+        BRZ done    //if "DAT 0", avslutter
+        OTC         //print(DAT x)
+        LDA pos     //henter minneadresse til "DAT X"
+        add v1      //øker minneadresse med 1
+        STA pos     //Lagrer "DAT X" = pos
+        BRA pos     //while not "DAT 0"
+
+neg     LDA ntxt    //Samme logikk som pos-loop
+        BRZ done
+        OTC
+        LDA neg
+        add v1
+        STA neg
+        BRA neg
+                
+done    HLT         //Ferdig
+
+
+n       DAT
+sum     DAT
+
+v0      DAT 0
+v1      DAT 1
+v2      DAT 2
+
+ptxt    DAT 10  // "\n"
+        DAT 112 // "p"
+        DAT 97  // "a"
+        DAT 114 // "r"
+        DAT 0   
+
+ntxt    DAT 10  // "\n"
+        DAT 111 // "o"
+        DAT 100 // "d"
+        DAT 100 // "d"
+        DAT 0

@@ -1,0 +1,21 @@
+# Assembly code written fro LMC
+
+#Write a program that adds 3 numbers. 
+
+    INP     //Input from user to be stored accumulator register
+    STA 99  //Save input from accumulator register in DAT 99
+    INP     //Next input to be stored in acc.register
+    ADD 99  //Add accumulator value with value from DAT 99
+    STA 99  //Store this value in DAT 99
+    INP     //New input
+    ADD 99  //Add accumulator value with value from DAT 99
+    OUT     //Print value from accumulator
+    HLT     //STOP 
+
+#Write a program that doubles the value from input and prints input
+
+    INP     //INPUT TO acc
+    STA 99  //STORE acc
+    ADD 99  //ADD acc with stored value
+    OUT     //Print value from acc
+    HLT     //STOP
